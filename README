@@ -1,0 +1,70 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1244
+
+This is a basic Preprocessor Engine 
+
+   It contains a script for processing Embedded Vim code in any file by using the following statements:
+
+
+*Now: Includes statmens were added, it supports nested including, and each included file will be proccesed too.
+
+<?vim:include="file_source.html">
+
+...any text...
+<?vim>
+   ...
+  {pure vim statements}
+   ...
+</?vim>
+...any text...
+
+
+
+or
+...any text...<?vim={a vim expresion}>...any text...
+_________________________________________________________________________
+
+
+****WRITE THE FOLLOWING FILE:****
+---------File.txt--------------------
+<?vim:include="headerfile.txt">
+You can use it on any file
+<?vim>
+let i=0
+while i<11
+</?vim>
+The i value is: <?vim="actually ".i >
+<?vim>let i=i+1 | endw</?vim>
+---------------------------------------
+
+*****TYPE ':%PPEV'****
+
+
+****AND YOU WILL GET THE FOLLOWING FILE****
+-----------File2.txt---------------------
+Header of the included file
+You can use it on any file
+The i value is: actually 0
+The i value is: actually 1
+The i value is: actually 2
+The i value is: actually 3
+The i value is: actually 4
+The i value is: actually 5
+The i value is: actually 6
+The i value is: actually 7
+The i value is: actually 8
+The i value is: actually 9
+The i value is: actually 10
+--------------------------------------
+_________________________________________________________________________
+Current Features:
+  *You can use  embedded  Vim code with any file, then
+  *using ':%PPEV' command it generates another file(any name) with the Embedded Vim Code processed
+  *<?vim> </?vim> statements
+  *<?vim={expr}> statement
+  *<?vim:include="{file}"> statement
+Future versions:
+  *ifdef
+  *ifndef
+  *define
+
+ 
